@@ -5,7 +5,7 @@ function App() {
   const [studentName, setStudentName] = useState("");
   const [students, setStudents] = useState([]);
   const [editMode, setEditMode] = useState(false);
-  const [editableTodo, setEditableTodo] = useState(null);
+  const [editableStudent, setEditableStudent] = useState(null);
 
   const createStudenthandler = () => {
     if (studentName) {
@@ -14,17 +14,34 @@ function App() {
         name: studentName,
       };
       setStudents([...students, newStudent]);
-      setStudentName("")
+      setStudentName("");
     } else {
       alert("Please provide valid info");
     }
   };
 
-  const editStudentHandler = (id) => {};
+  const editStudentHandler = (id) => {
+    const toBeEditedStudents = students.find((item) => item.id === id);
+    setEditMode(true);
+    setStudentName(toBeEditedStudents.name)
+    setEditableStudent(toBeEditedStudents);
+  };
 
-  const deleteStudentHandler = (id) => {};
+  const deleteStudentHandler = (id) => {
+    setStudents(students.filter((item) => item.id !== id));
+  };
 
-  const updateStudentHandler = (id) => {};
+  const updateStudentHandler = () => {
+    setStudents(students.map((student) => {
+      if(student.id === editableStudent.id){
+        student.name = studentName
+      }
+      return student
+    }))
+    setEditMode(false)
+    setStudentName("")
+    setEditableStudent(null)
+  };
 
   const presentHandler = (id) => {};
 
