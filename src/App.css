@@ -75,7 +75,7 @@ button:hover {
   background-color: #d32f2f;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 578px) {
   .students-section {
     grid-template-columns: 1fr;
   }
