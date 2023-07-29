@@ -14,7 +14,7 @@ function App() {
         name: studentName,
       };
       setStudents([...students, newStudent]);
-      studentName("");
+      setStudentName("");
     } else {
       alert("Enter a valid Name");
     }
@@ -73,21 +73,23 @@ function App() {
         <div className="all-student">
           <ul>
             {students.map((student) => {
-              <li>
-                <span>{student.name} </span>
-                <button onClick={() => editStudentHandler(student.id)}>
-                  Edit
-                </button>
-                <button onClick={() => deleteStudentHandler(student.id)}>
-                  Delete
-                </button>
-                <button onClick={() => presentHandler(student.id)}>
-                  Present
-                </button>
-                <button onClick={() => absentHandler(student.id)}>
-                  Absent
-                </button>
-              </li>;
+              return (
+                <li key={student.id}>
+                  <span>{student.name} </span>
+                  <button onClick={() => editStudentHandler(student.id)}>
+                    Edit
+                  </button>
+                  <button onClick={() => deleteStudentHandler(student.id)}>
+                    Delete
+                  </button>
+                  <button onClick={() => presentHandler(student.id)}>
+                    Present
+                  </button>
+                  <button onClick={() => absentHandler(student.id)}>
+                    Absent
+                  </button>
+                </li>
+              );
             })}
           </ul>
         </div>
@@ -112,7 +114,9 @@ function App() {
               .map((student) => (
                 <li>
                   <span>{student.name} </span>
-                  <button onClick={() => toggleHandler(student.id)}>Accidentally Added</button>
+                  <button onClick={() => toggleHandler(student.id)}>
+                    Accidentally Added
+                  </button>
                 </li>
               ))}
           </ul>
