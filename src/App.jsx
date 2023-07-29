@@ -94,7 +94,7 @@ function App() {
   };
 
   return (
-    <div className="App">
+    <div className="App container">
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -113,6 +113,7 @@ function App() {
       </form>
       <div className="students-section">
         <div className="all-student">
+          <h2 style={{ textAlign: "left" }}>All Students</h2>
           <ul>
             {students.map((student) => {
               return (
@@ -136,6 +137,7 @@ function App() {
           </ul>
         </div>
         <div className="present-student">
+          <h2 style={{ textAlign: "left" }}>Present Students</h2>
           <ul>
             {students
               .filter((item) => item.isPresent === true)
@@ -150,6 +152,7 @@ function App() {
           </ul>
         </div>
         <div className="absent-student">
+          <h2 style={{ textAlign: "left" }}>Absent Students</h2>
           <ul>
             {students
               .filter((item) => item.isPresent === false)
