@@ -45,11 +45,53 @@ function App() {
     setEditableStudent(null);
   };
 
-  const presentHandler = (id) => {};
+  const presentHandler = (id) => {
+    const student = students.find((item) => item.id === id);
+    if (student.isPresent === true) {
+      alert("student already in the present list");
+    } else if (student.isPresent === false) {
+      alert("student already in the absent list");
+    } else if (student.isPresent === undefined) {
+      setStudents(
+        students.map((item) => {
+          if (item.id === student.id) {
+            item.isPresent = true;
+          }
+          return item;
+        })
+      );
+    }
+  };
 
-  const absentHandler = (id) => {};
+  const absentHandler = (id) => {
+    const student = students.find((item) => item.id === id);
+    if (student.isPresent === true) {
+      alert("student already in the present list");
+    } else if (student.isPresent === false) {
+      alert("student already in the absent list");
+    } else if (student.isPresent === undefined) {
+      setStudents(
+        students.map((item) => {
+          if (item.id === student.id) {
+            item.isPresent = false;
+          }
+          return item;
+        })
+      );
+    }
+  };
 
-  const toggleHandler = (id) => {};
+  const toggleHandler = (id) => {
+    const student = students.find((item) => item.id === id);
+    setStudents(
+      students.map((item) => {
+        if (item.id === student.id) {
+          item.isPresent = !item.isPresent;
+        }
+        return item;
+      })
+    );
+  };
 
   return (
     <div className="App">
