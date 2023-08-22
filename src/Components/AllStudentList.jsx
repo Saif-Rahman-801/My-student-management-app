@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { StudentContextProvider } from "../Context/StudentContext";
+import { StudentContext } from "../Context/StudentContext";
 
 const AllStudentList = () => {
   const {
@@ -8,7 +8,7 @@ const AllStudentList = () => {
     setStudents,
     setEditMode,
     setEditableStudent,
-  } = useContext(StudentContextProvider);
+  } = useContext(StudentContext);
   const editStudentHandler = (id) => {
     setEditMode(true);
     const tobeEditedStudent = students.find((item) => item.id === id);

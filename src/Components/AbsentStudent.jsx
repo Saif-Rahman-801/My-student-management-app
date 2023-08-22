@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import { StudentContextProvider } from "../Context/StudentContext";
+import { StudentContext } from "../Context/StudentContext";
 
 const AbsentStudent = ({ toggleHandler }) => {
-  const { students } = useContext(StudentContextProvider);
+  const { students } = useContext(StudentContext);
   return (
     <div className="absent-student">
       <h2 style={{ textAlign: "left" }}>Absent Students</h2>

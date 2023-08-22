@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { StudentContextProvider } from "../Context/StudentContext";
+import { StudentContext } from "../Context/StudentContext";
 
 const Form = () => {
   const {
@@ -11,7 +11,7 @@ const Form = () => {
     setEditMode,
     editableStudent,
     setEditableStudent,
-  } = useContext(StudentContextProvider);
+  } = useContext(StudentContext);
 
   const createStudentHandler = () => {
     if (studentName) {

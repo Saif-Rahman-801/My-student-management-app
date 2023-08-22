@@ -1,7 +1,8 @@
-import React, { useContext } from "react";
+import React, { createContext, useState } from "react";
 
-export const StudentContextProvider = useContext();
-const StudentContext = ({ children }) => {
+export const StudentContext = createContext();
+
+export const StudentContextProvider = ({ children }) => {
   const [studentName, setStudentName] = useState("");
   const [students, setStudents] = useState([]);
   const [editMode, setEditMode] = useState(false);
@@ -17,7 +18,6 @@ const StudentContext = ({ children }) => {
     setEditableStudent,
   };
   return (
-    <StudentContextProvider.Provider value={value}>{children}</StudentContextProvider.Provider>
+    <StudentContext.Provider value={value}>{children}</StudentContext.Provider>
   );
 };
-export default StudentContext;

@@ -2,10 +2,10 @@ import React, { useContext } from "react";
 import AllStudentList from "./AllStudentList";
 import PresentStudent from "./PresentStudent";
 import AbsentStudent from "./AbsentStudent";
-import { StudentContextProvider } from "../Context/StudentContext";
+import { StudentContext } from "../Context/StudentContext";
 
 const StudentSection = () => {
-  const { students, setStudents } = useContext(StudentContextProvider);
+  const { students, setStudents } = useContext(StudentContext);;
   const toggleHandler = (id) => {
     const student = students.find((item) => item.id === id);
     setStudents(
