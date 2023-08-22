@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import AllStudentList from "./AllStudentList";
 import PresentStudent from "./PresentStudent";
 import AbsentStudent from "./AbsentStudent";
+import { StudentContextProvider } from "../Context/StudentContext";
 
-const StudentSection = (props) => {
+const StudentSection = () => {
+  const { students, setStudents } = useContext(StudentContextProvider);
   const toggleHandler = (id) => {
-    const student = props.students.find((item) => item.id === id);
-    props.setStudents(
-      props.students.map((item) => {
+    const student = students.find((item) => item.id === id);
+    setStudents(
+      students.map((item) => {
         if (item.id === student.id) {
           item.isPresent = !item.isPresent;
         }
@@ -18,17 +20,9 @@ const StudentSection = (props) => {
 
   return (
     <div className="students-section">
-      <AllStudentList
-        students={props.students}
-        setStudents={props.setStudents}
-        setStudentName={props.setStudentName}
-        editMode={props.editMode}
-        setEditMode={props.setEditMode}
-        editableStudent={props.editableStudent}
-        setEditableStudent={props.setEditableStudent}
-      />
-      <PresentStudent students={props.students} toggleHandler={toggleHandler} />
-      <AbsentStudent students={props.students} toggleHandler={toggleHandler} />
+      <AllStudentList />
+      <PresentStudent toggleHandler={toggleHandler} />
+      <AbsentStudent toggleHandler={toggleHandler} />
     </div>
   );
 };

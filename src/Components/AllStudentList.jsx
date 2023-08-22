@@ -1,26 +1,34 @@
-import React from "react";
+import React, { useContext } from "react";
+import { StudentContextProvider } from "../Context/StudentContext";
 
-const AllStudentList = (props) => {
+const AllStudentList = () => {
+  const {
+    setStudentName,
+    students,
+    setStudents,
+    setEditMode,
+    setEditableStudent,
+  } = useContext(StudentContextProvider);
   const editStudentHandler = (id) => {
-    props.setEditMode(true);
-    const tobeEditedStudent = props.students.find((item) => item.id === id);
-    props.setStudentName(tobeEditedStudent.name);
-    props.setEditableStudent(tobeEditedStudent);
+    setEditMode(true);
+    const tobeEditedStudent = students.find((item) => item.id === id);
+    setStudentName(tobeEditedStudent.name);
+    setEditableStudent(tobeEditedStudent);
   };
 
   const deleteStudentHandler = (id) => {
-    props.setStudents(props.students.filter((item) => item.id !== id));
+    setStudents(students.filter((item) => item.id !== id));
   };
 
   const presentHandler = (id) => {
-    const student = props.students.find((item) => item.id === id);
+    const student = students.find((item) => item.id === id);
     if (student.isPresent === true) {
       alert("student already in the present list");
     } else if (student.isPresent === false) {
       alert("student already in the absent list");
     } else if (student.isPresent === undefined) {
-      props.setStudents(
-        props.students.map((item) => {
+      setStudents(
+        students.map((item) => {
           if (item.id === student.id) {
             item.isPresent = true;
           }
@@ -31,14 +39,14 @@ const AllStudentList = (props) => {
   };
 
   const absentHandler = (id) => {
-    const student = props.students.find((item) => item.id === id);
+    const student = students.find((item) => item.id === id);
     if (student.isPresent === true) {
       alert("student already in the present list");
     } else if (student.isPresent === false) {
       alert("student already in the absent list");
     } else if (student.isPresent === undefined) {
-      props.setStudents(
-        props.students.map((item) => {
+      setStudents(
+        students.map((item) => {
           if (item.id === student.id) {
             item.isPresent = false;
           }
@@ -52,7 +60,7 @@ const AllStudentList = (props) => {
     <div className="all-student">
       <h2 style={{ textAlign: "left" }}>All Students</h2>
       <ul>
-        {props.students.map((student) => {
+        {students.map((student) => {
           return (
             <li key={student.id}>
               <span>{student.name} </span>

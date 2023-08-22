@@ -1,6 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
+import { StudentContextProvider } from "../Context/StudentContext";
 
 const Form = () => {
+  const {
+    studentName,
+    setStudentName,
+    students,
+    setStudents,
+    editMode,
+    setEditMode,
+    editableStudent,
+    setEditableStudent,
+  } = useContext(StudentContextProvider);
+
   const createStudentHandler = () => {
     if (studentName) {
       const newStudent = {
