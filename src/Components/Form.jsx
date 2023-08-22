@@ -1,38 +1,38 @@
-import React, { useState } from "react";
+import React from "react";
 
-const Form = (props) => {
+const Form = () => {
   const createStudentHandler = () => {
-    if (props.studentName) {
+    if (studentName) {
       const newStudent = {
         id: Date.now(),
-        name: props.studentName,
+        name: studentName,
       };
-      props.setStudents([...props.students, newStudent]);
-      props.setStudentName("");
+      setStudents([...students, newStudent]);
+      setStudentName("");
     } else {
       alert("Enter a valid Name");
     }
   };
 
   const updateStudentHandler = () => {
-    props.setStudents(
-      props.students.map((student) => {
-        if (student.id === props.editableStudent.id) {
-          student.name = props.studentName;
+    setStudents(
+      students.map((student) => {
+        if (student.id === editableStudent.id) {
+          student.name = studentName;
         }
         return student;
       })
     );
-    props.setEditMode(false);
-    props.setStudentName("");
-    props.setEditableStudent(null);
+    setEditMode(false);
+    setStudentName("");
+    setEditableStudent(null);
   };
 
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        props.editMode ? updateStudentHandler() : createStudentHandler();
+        editMode ? updateStudentHandler() : createStudentHandler();
       }}
     >
       <input
@@ -40,10 +40,10 @@ const Form = (props) => {
         name="text"
         id="txt"
         placeholder="Enter your name"
-        value={props.studentName}
-        onChange={(e) => props.setStudentName(e.target.value)}
+        value={studentName}
+        onChange={(e) => setStudentName(e.target.value)}
       />
-      <button>{props.editMode ? "Update Student" : "Add Student"}</button>
+      <button>{editMode ? "Update Student" : "Add Student"}</button>
     </form>
   );
 };
